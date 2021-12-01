@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2021 at 07:28 AM
+-- Generation Time: Dec 01, 2021 at 07:48 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -61,7 +61,7 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `name`, `desc`, `availability`, `edition`, `count`) VALUES
-(1, '101 Ways To Be A Software Engineer', 'By Miss Afshan Saad', 1, '1', 3),
+(1, '101 Ways To Be A Software Engineer', 'By Miss Yusra Mansoor', 1, '1', 3),
 (2, 'JAVA For Absolute Beginners', 'Step into the basics of java programmming along with globally famed programmer', 1, '1', 5);
 
 -- --------------------------------------------------------
@@ -97,16 +97,17 @@ CREATE TABLE `users` (
   `password` varchar(1000) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `bio` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `mob` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `lock` tinyint(1) NOT NULL
+  `lock` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `bio`, `mob`, `lock`) VALUES
-(4, 'Mehdi', 'mehdi@gmail.com', '025db420560617303c2ba988d050ec62562343bc0fb0358d31d2f0bae8dbede8', 'Hi :)!', '', 0),
-(6, 'Hamza Avvan', 'hamza@gmail.com', '025db420560617303c2ba988d050ec62562343bc0fb0358d31d2f0bae8dbede8', 'They watch you from the shelf while you sleep. Are you dreaming of them, they wonder, in that wistful mood books are prone to at night when they’re bored and there’s nothing else to do but tease the cat.?', '', 0);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `bio`, `mob`, `lock`, `created_at`) VALUES
+(4, 'Mehdi', 'mehdi@gmail.com', '025db420560617303c2ba988d050ec62562343bc0fb0358d31d2f0bae8dbede8', 'Hi :)! Long time no see ❤️', '', 0, '2021-12-01 23:07:53'),
+(6, 'Hamza Avvan', 'hamza@gmail.com', '025db420560617303c2ba988d050ec62562343bc0fb0358d31d2f0bae8dbede8', 'They watch you from the shelf while you sleep 👀. Are you dreaming of them, they wonder, in that wistful mood books are prone to at night when they’re bored and there’s nothing else to do but tease the cat.?', '', 0, '2021-11-18 23:07:53');
 
 --
 -- Indexes for dumped tables
