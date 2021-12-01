@@ -25,6 +25,7 @@ class AdminManager():
 		
 	def getUsersList(self):
 		admin = self.user.list()
+		print(admin)
 
 		return admin
 

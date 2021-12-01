@@ -3,20 +3,26 @@
 {% block title %}Profile - {{admin[1]}} {% endblock %}
 
 {% block content %}
+	
 	<div class="container">
 		<div>
 			<h2>Manage Users</h2>
 			<br>
+			
 			{% if users %}
 				{% for user in users %}
 					<div class="list-group">
 					  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 					    <div class="d-flex w-100 justify-content-between">
-					      <h5 class="mb-1">{{user['name']}}</h5>
-					      <small>{{user['bio']}}</small>
-					    </div>
-					    <p class="mb-1">{{user['email']}}</p>
+							<img style="" src="/static/images/avatar.jpg">
+							<div class="col-md-11">
+								<h5 class="mb-1">{{user['name']}}</h5>
+					      		<small>{{user['bio']}}</small>
+								<p class="mb-1">{{user['email']}}</p>
+							</div>
+						</div>
 					    <small>{{ "Locked" if user['lock']>0 else ""}}</small>
+					    <small class="float-right">{{ ago(user['created_at']) }}</small>
 					  </a>
 					</div>
 				{% endfor %}
