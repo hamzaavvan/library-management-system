@@ -1,0 +1,28 @@
+{%extends "/shared/admin_layout.html" %}
+
+{% block title %}Profile - {{admin[1]}} {% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div>
+			<h2>Manage Users</h2>
+			<br>
+			{% if users %}
+				{% for user in users %}
+					<div class="list-group">
+					  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+					    <div class="d-flex w-100 justify-content-between">
+					      <h5 class="mb-1">{{user['name']}}</h5>
+					      <small>{{user['bio']}}</small>
+					    </div>
+					    <p class="mb-1">{{user['email']}}</p>
+					    <small>{{ "Locked" if user['lock']>0 else ""}}</small>
+					  </a>
+					</div>
+				{% endfor %}
+			{% else %}
+				<p>No Users Found!</p>
+			{% endif %}	
+		</div>
+	</div>
+{% endblock %}

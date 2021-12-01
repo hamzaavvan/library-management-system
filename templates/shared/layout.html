@@ -1,0 +1,51 @@
+<html>
+<!-- What the page is called in the tab bar  -->
+<!-- We will add out stylsheet here later -->
+<head>
+	{%block head %}
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/style.css" />
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% endblock %}
+</head>
+<!-- Put some text on the page -->
+<body {{"class=home" if g and g.bg==1 else ""}}>
+	<div class="container-fluid">
+		<div class="navbar justify-content-end mb-5">
+			<ul class="nav">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="/">Home</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/books">Books</a>
+			  </li>
+			  {% if g and g.user %}
+				  <li class="nav-item">
+				    <a class="nav-link" href="/user/">Profile</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="/signout/">Signout</a>
+				  </li>
+			  {% else %}
+				  <li class="nav-item">
+				    <a class="nav-link" href="/signin">Signin</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="/signup">Signup</a>
+				  </li>
+			  {% endif %}
+			</ul>
+		</div>
+
+		{%block content %}{% endblock %}
+	</div>
+</body>
+</html>

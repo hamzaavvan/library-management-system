@@ -1,0 +1,137 @@
+{%extends "/shared/layout.html" %}
+
+{% block title %}Profile - {{user['name']}} {% endblock %}
+
+{% block content %}
+	<div class="profile container">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div class="alert alert-success">
+					{% for message in messages %}
+						<span>{{ message }}</span>
+					{% endfor %}
+				</div>
+			{% endif %}
+		{% endwith %}
+		<div class="">
+
+            <div class="card-body">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-md-4 pt-4 card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="profile-pic-div m-auto">
+                                    <img src="/static/images/avatar.jpg" id="photo">
+                                    <!-- <input type="file" id="file">
+                                    <label for="file" id="uploadBtn" style="display: none;">Choose Photo</label> -->
+									<div class="text-center mt-4">{{user['name']}}</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="lead">
+                                {{user['bio']}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card col-md-7 mwrapper">
+
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item">
+							  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Your Books</a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+							</li>
+						  </ul>
+
+						  <div class="col-md-12 ">
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+								<div class="">
+									{% if books %}
+										<h2 class="text-center mt-4" style="margin-bottom: 0.5em;">Your Books</h2>
+										<div class="text-center mb-4"><i class="text-center mt-4 bi-book-half" style="
+											font-size: 6em; "></i></div>
+										{% for book in books %}
+											<div class="card book">
+												<img src="/static/images/books/no-book.png" class="card-img-top" alt="{{book[1]}}">
+												<div class="card-body">
+				    								<h5 class="card-title"><a href="/books/{{book['id']}}">{{book['name']}}</a></h5>
+													{% if book['availability'] < 1 %}
+														<span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
+													{% endif %}
+													<p class="card-text">{{book['desc']}}</p>
+
+													<p class="card-text">
+													<span class="badge badge-{{ 'success' if book['count'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
+														{% if book['count'] > 0%}
+														Books Left: {{book['count']}}
+														{% else %}
+														All gone
+														{% endif %}
+													</span>
+													</p>
+												</div>
+											</div>
+										{% endfor %}
+										{% else %}
+											<div class="card bwrapper">
+												<div class="card-body">
+													<h4 class="text-center mt-4">Manage Books</h4>
+													<div class="text-center mb-4" style="
+													margin-top: 21px !important;"><i class="text-center mt-4 bi-book" style="
+														font-size: 6em; "></i></div>
+													<p class="text-center mb-4">No Books You Reserved!</p>
+												</div>
+											</div>
+										{% endif %}	
+										</div>
+								</div>
+								<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+									<div class="card-body">
+										<h4 class="text-center mt-4">Manage Account</h4>
+										<p class="text-center mb-4">One Account For Everything</p>
+
+										<form method="POST" action="/user">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label for="inputFirstName" class="form-label">Your Name</label>
+														<input type="text" placeholder="Enter Your Name" name="name" value="{{user['name']}}" class="form-control" id="inputFirstName">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+													<label for="inputEmail3" class="form-label">Email</label>
+													<input type="email" placeholder="Email" value="{{user['email']}}" name="email" class="form-control" id="inputEmail3">
+													</div>
+												</div>
+												<div class="col-sm-6">
+														<div class="form-group">
+														<label for="password" class="form-label">Password</label>
+														<input type="password" placeholder="Password" class="form-control" id="password" name="password">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inpBio" class="form-label">Bio</label>
+												<textarea class="form-control" rows="3" name="bio" id="inpBio">{{user['bio']}}</textarea>
+											</div>
+											<div class="form-group">
+												<button type="submit" class="btn btn-block btn-primary">Save Changes</button>
+											</div>
+										</form>	
+									</div>
+								</div>
+							</div>
+						  </div>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+	</div>
+{% endblock %}

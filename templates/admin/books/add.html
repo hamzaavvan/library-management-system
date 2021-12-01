@@ -1,0 +1,30 @@
+{%extends "/shared/admin_layout.html" %}
+
+{% block title %}Book - Add{% endblock %}
+
+{% block head %}
+	{{ super() }}
+
+    <link rel="stylesheet" href="/static/home.css" />
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+    	<h3>Add Book</h3>
+		<form action="/books/search" method="GET">
+		  <div class="form-group col-6">
+		    <label for="exampleInputEmail1">Title</label>
+		    <input type="text" name="title" class="form-control" id="title" required  placeholder="Enter book title">
+		    <small id="emailHelp" class="form-text text-muted">Members will be able to search using title!</small>
+		  </div>
+		  <div class="form-group col-6">
+		    <label for="desc">Description</label>
+		    <textarea name="desc" class="form-control"></textarea>
+		  </div>
+		  
+		  <div class="form-group col-12">
+		  	<button type="submit" class="btn btn-primary">Add</button>
+		  </div>
+		</form>
+	</div>
+{% endblock %}

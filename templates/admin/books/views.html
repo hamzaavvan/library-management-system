@@ -1,0 +1,40 @@
+{%extends "/shared/admin_layout.html" %}
+
+{% block title %}Profile - {{admin[1]}} {% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div>
+			<h2>Manage Books</h2>
+			{% if books %}
+				{% for book in books %}
+				<div class="card book">
+				  <img src="/static/images/books/no-book.png" class="card-img-top" alt="{{book[1]}}">
+				  <div class="card-body">
+				    <h5 class="card-title">{{book["name"]}}</h5>
+				    {% if book["availability"] < 1 %}
+				    	<span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
+				    {% endif %}
+				    <p class="card-text">{{book["desc"]}}</p>
+
+				    <p class="card-text">
+				    <span class="badge badge-{{ 'success' if book['availability'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
+				    	{% if book["count"] > 0%}
+				    	  Books Left: {{book['count']}}
+				    	{% else %}
+				    	  All gone
+				    	{% endif %}
+				    </span>
+					</p>
+					<form method="get" action="delete/{{book[0]}}">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+				  </div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<p>No Books In Stash!</p>
+			{% endif %}	
+		</div>
+	</div>
+{% endblock %}

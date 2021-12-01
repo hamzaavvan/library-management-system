@@ -1,0 +1,53 @@
+{%extends "/shared/layout.html" %}
+
+{% block title %}Book - {{books['name']}} {% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if books %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card  book" style="width:100%">
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-md-5">
+                                <img src="/static/images/books/no-book.png" style="height: 250px; width: auto; 
+                                margin: 0 auto;
+                                display: block;" class="card-img-top" alt="{{books[1]}}">
+                            </div>
+                            <div class="col-md-6">
+                                <h2>{{books['name']}}</h2>
+                                {% if books['availability'] < 1 %}
+                                <span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
+                                {% endif %}
+                                <p class="card-text">{{books['desc']}}</p>
+            
+                                <p class="card-text">
+                                <span class="badge badge-{{ 'success' if books['count'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
+                                    {% if books['count'] > 0%}
+                                        Books Left: {{books['count']}}
+                                    {% else %}
+                                        All gone
+                                    {% endif %}
+                                </span>
+                                </p>
+                                <a href="/books/add/{{books['id']}}" class="btn btn-primary">Add</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            <div class="card bwrapper">
+                <div class="card-body">
+                    <div class="text-center mb-4" style="
+                    margin-top: 21px !important;"><i class="text-center mt-4 bi-book" style="
+                        font-size: 6em; "></i></div>
+                    <p class="text-center mb-4">No Book Found!</p>
+                </div>
+            </div>
+        {% endif %}	
+</div>
+{% endblock %}
