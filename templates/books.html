@@ -42,7 +42,7 @@
 				    <p class="card-text">{{book['desc']}}</p>
 
 				    <p class="card-text">
-				    <span class="badge badge-{{ 'success' if book['count'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
+				    <span class="badge badge-{{ 'primary' if book['count'] > 0 else 'secondary' }}" style="margin-bottom: 5px;">
 				    	{% if book['count'] > 0%}
 				    	  Books Left: {{book['count']}}
 				    	{% else %}
@@ -52,7 +52,7 @@
 					</p>
 
 				    {% if book['count'] > 0 %}
-				    <a href="/books/add/{{book['id']}}" class="btn btn-primary">Add</a>
+				    <a href="/books/add/{{book['id']}}" class="btn btn-outline-warning"><i class="bi bi-journal-plus"></i> Add</a>
 				    {% endif %}
 				  </div>
 				</div>

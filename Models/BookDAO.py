@@ -53,13 +53,25 @@ class BookDAO():
 
 		return book
 
-	def list(self):
-		books = self.db.query("select * from @table").fetchall()
+	def list(self, availability=1):
+		query="select * from @table"
+		# Usually when no-admin user query for book
+		if availability==1: query= query+"  WHERE availability={}".format(availability)
+		
+		books = self.db.query(query)
+		
+		books = books.fetchall()
+
 
 		return books
 
-	def search_book(self, name):
-		q = self.db.query("select * from @table where name LIKE '%{}%'".format(name))
+	def search_book(self, name, availability=1):
+		query="select * from @table where name LIKE '%{}%'".format(name)
+
+		# Usually when no-admin user query for book
+		if availability==1: query= query+"  AND availability={}".format(availability)
+
+		q = self.db.query(query)
 		books = q.fetchall()
 		
 		return books

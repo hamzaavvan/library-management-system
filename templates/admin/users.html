@@ -1,6 +1,6 @@
 {%extends "/shared/admin_layout.html" %}
 
-{% block title %}Profile - {{admin[1]}} {% endblock %}
+{% block title %}Manage Users {% endblock %}
 
 {% block content %}
 	
@@ -14,10 +14,11 @@
 					<div class="list-group">
 					  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 					    <div class="d-flex w-100 justify-content-between">
-							<img style="" src="/static/images/avatar.jpg">
+							<img src="/static/images/avatar.jpg">
 							<div class="col-md-11">
 								<h5 class="mb-1">{{user['name']}}</h5>
-					      		<small>{{user['bio']}}</small>
+								<form method="POST" action="../delete/{{user['id']}}"><button style="border-radius: 100%; padding: 10px;" class="btn btn-outline-danger float-right"><i class="bi bi-trash"></i></button></form>
+								<small>{{user['bio']}}</small>
 								<p class="mb-1">{{user['email']}}</p>
 							</div>
 						</div>
@@ -31,4 +32,8 @@
 			{% endif %}	
 		</div>
 	</div>
+
+	<script>
+
+	</script>
 {% endblock %}

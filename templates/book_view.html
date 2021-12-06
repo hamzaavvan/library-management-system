@@ -4,6 +4,22 @@
 
 {% block content %}
 <div class="container">
+    <div style="width:100%; margin-top: 3em;margin-bottom: 2em;">
+        {% if msg %}
+            <div class="alert alert-success">{{msg}}</div>
+        {% endif %}
+        <form action="/books/search" method="GET">
+          <div class="form-group">
+            <div style="width: 100%">
+            <div style="width: 90%; display: inline-block;">
+            <input type="search" name="keyword" autofocus class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{keyword}}" placeholder="Search for books...">
+            </div>
+            <button type="submit" style="margin-left: 5px;" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+        </form>
+    </div>
+
     {% if books %}
             <div class="row">
                 <div class="col-md-12">
@@ -23,7 +39,7 @@
                                 <p class="card-text">{{books['desc']}}</p>
             
                                 <p class="card-text">
-                                <span class="badge badge-{{ 'success' if books['count'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
+                                <span class="badge badge-{{ 'primary' if books['count'] > 0 else 'secondary' }}" style="margin-bottom: 5px;">
                                     {% if books['count'] > 0%}
                                         Books Left: {{books['count']}}
                                     {% else %}
@@ -31,7 +47,7 @@
                                     {% endif %}
                                 </span>
                                 </p>
-                                <a href="/books/add/{{books['id']}}" class="btn btn-primary">Add</a>
+                                <a href="/books/add/{{books['id']}}" class="btn btn-outline-warning"><i class="bi bi-journal-plus"></i> Add</a>
                             </div>
                             </div>
                         </div>

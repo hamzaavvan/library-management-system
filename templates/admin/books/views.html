@@ -1,9 +1,25 @@
 {%extends "/shared/admin_layout.html" %}
 
-{% block title %}Profile - {{admin[1]}} {% endblock %}
+{% block title %}Manage Books - View {% endblock %}
 
 {% block content %}
-	<div class="container">
+	<div class="container">	
+		<div style="width:100%; margin-top: 3em;">
+			{% if msg %}
+				<div class="alert alert-success">{{msg}}</div>
+			{% endif %}
+			<form action="/admin/books/search" method="GET">
+			  <div class="form-group">
+			    <div style="width: 100%">
+			    <div style="width: 90%; display: inline-block;">
+			    <input type="search" name="keyword" autofocus class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{keyword}}" placeholder="Search for books...">
+			    </div>
+				<button type="submit" style="margin-left: 5px;" class="btn btn-primary">Search</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+
 		<div>
 			<h2>Manage Books</h2>
 			{% if books %}
@@ -26,8 +42,13 @@
 				    	{% endif %}
 				    </span>
 					</p>
-					<form method="get" action="delete/{{book[0]}}">
-						<button type="submit" class="btn btn-danger">Delete</button>
+					<form method="get" action="">
+						<a href="edit/{{book['id']}}" class="btn btn-outline-primary">
+							<i class="bi bi-pen-fill"></i> Edit
+						</a>
+						<a href="delete/{{book['id']}}" class="btn btn-outline-danger">
+							<i class="bi bi-trash"></i> Delete
+						</a>
 					</form>
 				  </div>
 				</div>

@@ -5,8 +5,8 @@ class BookManager():
 		self.misc = Books(DAO.db.book)
 		self.dao = self.misc.dao
 
-	def list(self):
-		book_list = self.dao.list()
+	def list(self, availability=1):
+		book_list = self.dao.list(availability)
 
 		return book_list
 
@@ -15,8 +15,8 @@ class BookManager():
 
 		return books
 
-	def search(self, keyword):
-		books = self.dao.search_book(keyword)
+	def search(self, keyword, availability=1):
+		books = self.dao.search_book(keyword, availability)
 
 		return books
 

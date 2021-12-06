@@ -70,12 +70,9 @@ def users_view():
 def books():
 	admin_manager.admin.set_session(session, g)
 
-	print('----------------------------------')
-	print(admin_manager.admin.uid())
-	print('----------------------------------')
 	id = int(admin_manager.admin.uid())
 	admin = admin_manager.get(id)
-	mybooks = book_manager.list()
+	mybooks = book_manager.list(availability=0)
 
 	return render_template('books/views.html', g=g, books=mybooks, admin=admin)
 
@@ -83,15 +80,27 @@ def books():
 @admin_view.route('/books/add', methods=['GET', 'POST'])
 @admin_manager.admin.login_required
 def book_add():
+	admin_manager.admin.set_session(session, g)
+	
 	return render_template('books/add.html', g=g)
 
 
-@admin_view.route('/books/edit', methods=['GET', 'PUT'])
+@admin_view.route('/books/edit/<int:id>', methods=['GET', 'POST'])
 @admin_manager.admin.login_required
-def book_edit():
-	return render_template('books/edit.html', g=g)
+def book_edit(id):
+	admin_manager.admin.set_session(session, g)
 
-@admin_view.route('/books/delete/<id>', methods=['GET'])
+	if id != None:
+		b = book_manager.getBook(id)
+
+		if b and len(b) <1:
+			return render_template('edit.html', error="No book found!")
+
+		return render_template("books/edit.html", book=b, g=g)
+	
+	return redirect('/books')
+
+@admin_view.route('/books/delete/<int:id>', methods=['GET'])
 @admin_manager.admin.login_required
 def book_delete(id):
 	id = int(id)
@@ -100,3 +109,27 @@ def book_delete(id):
 		book_manager.delete(id)
 	
 	return redirect('/admin/books/')
+
+
+@admin_view.route('/books/search', methods=['GET'])
+def search():
+	admin_manager.admin.set_session(session, g)
+
+	if "keyword" not in request.args:
+		return render_template("books/view.html")
+
+	keyword = request.args["keyword"]
+
+	if len(keyword)<1:
+		return redirect('/admin/books')
+
+	id = int(admin_manager.admin.uid())
+	admin = admin_manager.get(id)
+
+	d=book_manager.search(keyword, 0)
+
+	if len(d) >0:
+		return render_template("books/views.html", search=True, books=d, count=len(d), keyword=escape(keyword), g=g, admin=admin)
+
+	return render_template('books/views.html', error="No books found!", keyword=escape(keyword))
+

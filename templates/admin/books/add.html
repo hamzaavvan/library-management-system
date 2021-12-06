@@ -1,6 +1,6 @@
 {%extends "/shared/admin_layout.html" %}
 
-{% block title %}Book - Add{% endblock %}
+{% block title %}Manage Books - Add{% endblock %}
 
 {% block head %}
 	{{ super() }}
@@ -10,21 +10,32 @@
 
 {% block content %}
 	<div class="container">
-    	<h3>Add Book</h3>
-		<form action="/books/search" method="GET">
-		  <div class="form-group col-6">
-		    <label for="exampleInputEmail1">Title</label>
-		    <input type="text" name="title" class="form-control" id="title" required  placeholder="Enter book title">
-		    <small id="emailHelp" class="form-text text-muted">Members will be able to search using title!</small>
-		  </div>
-		  <div class="form-group col-6">
-		    <label for="desc">Description</label>
-		    <textarea name="desc" class="form-control"></textarea>
-		  </div>
-		  
-		  <div class="form-group col-12">
-		  	<button type="submit" class="btn btn-primary">Add</button>
-		  </div>
-		</form>
+		<div class="d-flex justify-content-center">
+			<form action="/books/add" method="GET" class="col-md-5 ">
+			<h3>Add Book</h3>
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input type="text" name="title" class="form-control" id="title" required  placeholder="Enter book title">
+				<small class="form-text text-muted">Members will be able to search using title!</small>
+			</div>
+			<div class="form-group">
+				<label for="qty">Quantity</label>
+				<input type="number" name="qty" class="form-control" id="qty" required  placeholder="E.g 2">
+			</div>
+			<div class="form-group form-check">
+				<input type="checkbox" name="avaliable" class="form-check-input" id="avaliable" required >
+				<label class="form-check-label" for="avaliable">Avaliable</label>
+				<small class="form-text text-muted">Book will not be shown to members if unchecked!</small>
+			</div>
+			<div class="form-group">
+				<label for="desc">Description</label>
+				<textarea id="desc" name="desc" class="form-control"></textarea>
+			</div>
+			
+			<div class="form-group col-12">
+				<button type="submit" class="btn btn-primary">Add</button>
+			</div>
+			</form>
+		</div>
 	</div>
 {% endblock %}

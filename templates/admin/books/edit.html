@@ -1,1 +1,41 @@
-edit.html
+{%extends "/shared/admin_layout.html" %}
+
+{% block title %}Manage Books - Edit {{book['name']}}{% endblock %}
+
+{% block head %}
+	{{ super() }}
+
+    <link rel="stylesheet" href="/static/home.css" />
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<form action="/books/edit/{{book['id']}}" method="POST" class="col-md-5 ">
+			<h2 style="display: inline-block;">Edit </h2> <h4 style="display: inline;"><b><i>"{{book['name']}}"</i></b></h4>
+			<div style="margin-top: 2em;" class="form-group">
+				<label for="title">Title</label>
+				<input type="text" name="title" class="form-control" value="{{book['name']}}" id="title" required  placeholder="Enter book title">
+				<small class="form-text text-muted">Members will be able to search using title!</small>
+			</div>
+			<div class="form-group">
+				<label for="qty">Quantity</label>
+				<input type="number" name="qty" class="form-control" id="qty" value="{{book['count']}}" required  placeholder="E.g 2">
+			</div>
+			<div class="form-group form-check">
+				<input type="checkbox" name="avaliable" value="{{book['availability']}}" checked="{{'true' if book['availability']==1 else''}}" class="form-check-input" id="avaliable">
+				<label class="form-check-label" for="avaliable">Avaliable</label>
+				<small class="form-text text-muted">Book will not be shown to members if unchecked!</small>
+			</div>
+			<div class="form-group">
+				<label for="desc">Description</label>
+				<textarea id="desc" name="desc" class="form-control">{{book['desc']}}</textarea>
+			</div>
+			
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Update</button>
+			</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
