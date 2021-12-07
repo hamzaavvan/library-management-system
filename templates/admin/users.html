@@ -14,12 +14,15 @@
 					<div class="list-group">
 					  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 					    <div class="d-flex w-100 justify-content-between">
-							<img src="/static/images/avatar.jpg">
+							<div>
+								<img style="height: auto !important;" src="/static/images/avatar.jpg">
+							</div>
 							<div class="col-md-11">
 								<h5 class="mb-1">{{user['name']}}</h5>
-								<form method="POST" action="../delete/{{user['id']}}"><button style="border-radius: 100%; padding: 10px;" class="btn btn-outline-danger float-right"><i class="bi bi-trash"></i></button></form>
-								<small>{{user['bio']}}</small>
-								<p class="mb-1">{{user['email']}}</p>
+								<form style="display: inline;" method="POST" action="../delete/{{user['id']}}"><button style="border-radius: 100%; padding: 10px;" class="btn btn-outline-danger float-right"><i class="bi bi-trash"></i></button></form>
+								<small class="font-weight-light" style="display: block;font-size: 15px;width: 90%;">{{user['bio']}}</small>
+								<p class="mb-1 font-weight-light">{{user['email']}}</p>
+								<p class="mb-1 font-weight-light"><span class="badge badge-warning">Books Owned: {{user['books_owned']}}</span></p>
 							</div>
 						</div>
 					    <small>{{ "Locked" if user['lock']>0 else ""}}</small>

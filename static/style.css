@@ -59,3 +59,11 @@ h1, h2, h3, h4 {
 .profile.container {
 	max-width: 1181px !important;
 }
+
+.bookdesc{
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+}

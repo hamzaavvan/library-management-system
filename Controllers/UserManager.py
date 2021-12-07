@@ -57,3 +57,6 @@ class UserManager():
 
 	def getBooksList(self, id):
 		return self.book.getBooksByUser(id)
+
+	def getUsersByBook(self, book_id):
+		return self.dao.getUsersByBook(book_id)

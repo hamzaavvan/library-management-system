@@ -30,5 +30,10 @@ class BookManager():
 
 		return books
 
+	def getUserBooksCount(self, user_id):
+		books = self.dao.getBooksCountByUser(user_id)
+
+		return books
+
 	def delete(self, id):
 		self.dao.delete(id)

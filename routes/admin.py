@@ -4,10 +4,12 @@ from Misc.functions import *
 
 from Controllers.AdminManager import AdminManager
 from Controllers.BookManager import BookManager
+from Controllers.UserManager import UserManager
 
 admin_view = Blueprint('admin_routes', __name__, template_folder='../templates/admin/', url_prefix='/admin')
 
 book_manager = BookManager(DAO)
+user_manager = UserManager(DAO)
 admin_manager = AdminManager(DAO)
 
 
@@ -75,6 +77,23 @@ def books():
 	mybooks = book_manager.list(availability=0)
 
 	return render_template('books/views.html', g=g, books=mybooks, admin=admin)
+
+@admin_view.route('/books/<int:id>')
+@admin_manager.admin.login_required
+def view_book(id):
+	admin_manager.admin.set_session(session, g)
+
+	if id != None:
+		b = book_manager.getBook(id)
+		users = user_manager.getUsersByBook(id)
+
+		print('----------------------------')
+		print(users)
+		
+		if b and len(b) <1:
+			return render_template('books/book_view.html', error="No book found!")
+
+		return render_template("books/book_view.html", books=b, books_owners=users, g=g)
 
 
 @admin_view.route('/books/add', methods=['GET', 'POST'])

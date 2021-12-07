@@ -1,4 +1,4 @@
-{%extends "/shared/layout.html" %}
+{%extends "/shared/admin_layout.html" %}
 
 {% block title %}Book - {{books['name']}} {% endblock %}
 
@@ -30,7 +30,8 @@
                                 <img src="/static/images/bg.jpg" style="height: 250px; width: auto; 
                                 margin: 0 auto;
                                 display: block;" class="card-img-top" alt="{{books[1]}}">
-                                <a href="/books/add/{{books['id']}}" class="btn btn-outline-warning ml-3 mt-3"><i class="bi bi-journal-plus"></i> Add</a>
+								<a href="edit/{{books['id']}}" class="btn ml-3 mt-3 btn-outline-primary"><i class="bi bi-pen-fill"></i> Edit</a>
+								<a href="delete/{{books['id']}}" class="btn ml-3 mt-3 btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
 
                                 <div class="platforms mt-3 ml-3">
                                     <h4 class="font-weight-light" style="margin-bottom: 0;">Avaliable On:</h4>
@@ -59,6 +60,19 @@
                                     {% endif %}
                                 </span>
                                 </p>
+
+								{% if books_owners %}
+								<hr class="mt-5 mb-3">
+									<h4 class="font-weight-light">Book Owner(s)</h4>
+									<div class="row">
+									{% for user in books_owners %}
+										<div class="owner col-md-3">
+											<img style="height: auto !important; display: block;" class="mr-auto ml-auto" src="/static/images/avatar.jpg">
+											<p class="text-center">{{user['name']}}</p>
+										</div>
+									{% endfor %}
+								</div>
+								{% endif %}
                             </div>
                             </div>
                         </div>

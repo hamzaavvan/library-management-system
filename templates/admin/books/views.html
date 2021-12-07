@@ -25,13 +25,13 @@
 			{% if books %}
 				{% for book in books %}
 				<div class="card book">
-				  <img src="/static/images/books/no-book.png" class="card-img-top" alt="{{book[1]}}">
+				  <img src="/static/images/bg.jpg" class="card-img-top" alt="{{book[1]}}">
 				  <div class="card-body">
-				    <h5 class="card-title">{{book["name"]}}</h5>
+				    <h5 class="card-title"><a href="{{book['id']}}">{{book['name']}}</a></h5>
 				    {% if book["availability"] < 1 %}
 				    	<span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
 				    {% endif %}
-				    <p class="card-text">{{book["desc"]}}</p>
+				    <p class="card-text bookdesc">{{book["desc"]}}</p>
 
 				    <p class="card-text">
 				    <span class="badge badge-{{ 'success' if book['availability'] > 0 else 'danger' }}" style="margin-bottom: 5px;">

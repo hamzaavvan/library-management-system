@@ -29,6 +29,14 @@ class BookDAO():
 		print(books)
 		return books
 
+	def getBooksCountByUser(self, user_id):
+		q = self.db.query("select count(reserve.book_id) as books_count from @table left join reserve on reserve.book_id = @table.id where reserve.user_id={}".format(user_id))
+
+		books = q.fetchall()
+
+		print(books)
+		return books
+
 	def getBook(self, id):
 		q = self.db.query("select * from @table where id={}".format(id))
 

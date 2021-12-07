@@ -17,7 +17,7 @@
 
             <div class="card-body">
                 <div class="row d-flex justify-content-between">
-                    <div class="col-md-4 pt-4 card">
+                    <div class="col-md-4 pt-4 card" style="height: fit-content;">
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="profile-pic-div m-auto">
@@ -53,18 +53,18 @@
 								<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 								<div class="">
 									{% if books %}
-										<h2 class="text-center mt-4" style="margin-bottom: 0.5em;">Your Books</h2>
-										<div class="text-center mb-4"><i class="text-center mt-4 bi-book-half" style="
+										<!-- <h2 class="text-center mt-4" style="margin-bottom: 0.5em;">Your Books</h2> -->
+										<div class="text-center mb-4"><i class="text-center mt-4 bi-book" style="
 											font-size: 6em; "></i></div>
 										{% for book in books %}
 											<div class="card book">
-												<img src="/static/images/books/no-book.png" class="card-img-top" alt="{{book[1]}}">
+												<img src="/static/images/bg.jpg" class="card-img-top" alt="{{book[1]}}">
 												<div class="card-body">
 				    								<h5 class="card-title"><a href="/books/{{book['id']}}">{{book['name']}}</a></h5>
 													{% if book['availability'] < 1 %}
 														<span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
 													{% endif %}
-													<p class="card-text">{{book['desc']}}</p>
+													<p class="card-text bookdesc">{{book['desc']}}</p>
 
 													<p class="card-text">
 													<span class="badge badge-{{ 'success' if book['count'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
