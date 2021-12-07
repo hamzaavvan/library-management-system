@@ -62,11 +62,11 @@
                                 </p>
 
 								{% if books_owners %}
-								<hr class="mt-5 mb-3">
+								<hr class="mt-5 mb-4">
 									<h4 class="font-weight-light">Book Owner(s)</h4>
 									<div class="row">
 									{% for user in books_owners %}
-										<div class="owner col-md-3">
+										<div class="owner col-md-3" style="padding-left: 0;">
 											<img style="height: auto !important; display: block;" class="mr-auto ml-auto" src="/static/images/avatar.jpg">
 											<p class="text-center">{{user['name']}}</p>
 										</div>
