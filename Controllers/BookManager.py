@@ -5,10 +5,18 @@ class BookManager():
 		self.misc = Books(DAO.db.book)
 		self.dao = self.misc.dao
 
-	def list(self, availability=1):
-		book_list = self.dao.list(availability)
+	def list(self, availability=1,user_id=None):
+		if user_id!= None:
+			book_list = self.dao.listByUser(user_id)
+		else:
+			book_list = self.dao.list(availability)
 
 		return book_list
+
+	def getReserverdBooksByUser(self, user_id):
+		books = self.dao.getReserverdBooksByUser(user_id)
+
+		return books
 
 	def getBook(self, id):
 		books = self.dao.getBook(id)

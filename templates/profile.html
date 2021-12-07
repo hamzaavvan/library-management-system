@@ -64,17 +64,9 @@
 													{% if book['availability'] < 1 %}
 														<span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
 													{% endif %}
-													<p class="card-text bookdesc">{{book['desc']}}</p>
+													<!-- <p class="card-text bookdesc">{{book['desc']}}</p> -->
 
-													<p class="card-text">
-													<span class="badge badge-{{ 'success' if book['count'] > 0 else 'danger' }}" style="margin-bottom: 5px;">
-														{% if book['count'] > 0%}
-														Books Left: {{book['count']}}
-														{% else %}
-														All gone
-														{% endif %}
-													</span>
-													</p>
+													<p class="card-text">Author: <span class="font-weight-light">{{book['author']}}</span></p>
 												</div>
 											</div>
 										{% endfor %}

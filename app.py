@@ -17,6 +17,7 @@ from routes.admin import admin_view
 # Registering custom functions to be used within templates
 app.jinja_env.globals.update(
     ago=ago,
+    str=str,
 )
 
 app.register_blueprint(user_view)

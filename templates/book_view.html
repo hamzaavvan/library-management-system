@@ -30,7 +30,7 @@
                                 <img src="/static/images/bg.jpg" style="height: 250px; width: auto; 
                                 margin: 0 auto;
                                 display: block;" class="card-img-top" alt="{{books[1]}}">
-                                <a href="/books/add/{{books['id']}}" class="btn btn-outline-warning ml-3 mt-3"><i class="bi bi-journal-plus"></i> Add</a>
+                                <a href="/books/add/{{books['id']}}" class="btn btn-outline-warning ml-3 mt-3  {{ 'disabled' if str(books['id']) in user_books else '' }}"><i class="bi bi-journal-plus"></i> {{ 'Added' if str(books['id']) in user_books else 'Add' }}</a>
 
                                 <div class="platforms mt-3 ml-3">
                                     <h4 class="font-weight-light" style="margin-bottom: 0;">Avaliable On:</h4>

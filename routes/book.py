@@ -19,18 +19,28 @@ def home(id):
 
 		print('----------------------------')
 		print(b)
+
+		user_books={}
+		if user_manager.user.isLoggedIn():
+			user_books = book_manager.getReserverdBooksByUser(user_id=user_manager.user.uid())['user_books'].split(',')
 		
 		if b and len(b) <1:
 			return render_template('book_view.html', error="No book found!")
 
-		return render_template("book_view.html", books=b, g=g)
+		return render_template("book_view.html", books=b, g=g, user_books=user_books)
 	else:
 		b = book_manager.list()
+
+		user_books={}
+		if user_manager.user.isLoggedIn():
+			user_books = book_manager.getReserverdBooksByUser(user_id=user_manager.user.uid())['user_books'].split(',')
 		
+		print(user_books)
+
 		if b and len(b) <1:
 			return render_template('books.html', error="No books found!")
 	
-		return render_template("books.html", books=b, g=g)
+		return render_template("books.html", books=b, g=g, user_books=user_books)
 
 
 	return render_template("books.html", books=b, g=g)

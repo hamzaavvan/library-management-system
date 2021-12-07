@@ -73,6 +73,16 @@ class BookDAO():
 
 		return books
 
+	def getReserverdBooksByUser(self, user_id):
+		query="select concat(book_id,',') as user_books from reserve WHERE user_id={}".format(user_id)
+		
+		books = self.db.query(query)
+		
+		books = books.fetchone()
+
+
+		return books
+
 	def search_book(self, name, availability=1):
 		query="select * from @table where name LIKE '%{}%'".format(name)
 
