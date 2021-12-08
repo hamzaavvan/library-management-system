@@ -6,9 +6,9 @@ A simple flask app to manage users along with mysql service
 
 ## Installation
 
-To use the mysql service, install `flask_mysqldb`
+To run the app flawlessly, satisfy the requirements
 ```bash
-$ pip install flask_mysqldb
+$ pip install -r requirements.txt
 ```
 
 ## Set Environment Variables
