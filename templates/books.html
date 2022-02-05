@@ -52,7 +52,7 @@
 					</p>
 
 				    {% if book['count'] > 0 %}
-				    <a href="/books/add/{{book['id']}}" {{ 'disabled' if str(book['id']) in user_books else '' }} class="btn btn-outline-warning {{ 'disabled' if str(book['id']) in user_books else '' }}"><i class="bi bi-journal-plus"></i> {{ 'Added' if str(book['id']) in user_books else 'Add' }}</a>
+				    <a href="/books/add/{{book['id']}}" {{ 'disabled' if user_books!=None and str(book['id']) in user_books else '' }} class="btn btn-outline-warning {{ 'disabled' if str(book['id']) in user_books else '' }}"><i class="bi bi-journal-plus"></i> {{ 'Added' if str(book['id']) in user_books else 'Add' }}</a>
 				    {% endif %}
 				  </div>
 				</div>

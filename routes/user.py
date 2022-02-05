@@ -83,7 +83,6 @@ def show_user(id=None):
 	d = user_manager.get(id)
 	mybooks = user_manager.getBooksList(id)
 
-	print(d)
 	return render_template("profile.html", user=d, books=mybooks, g=g)
 
 @user_view.route('/user', methods=['POST'])

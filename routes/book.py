@@ -31,10 +31,14 @@ def home(id):
 	else:
 		b = book_manager.list()
 
-		user_books={}
+		user_books=[]
 		if user_manager.user.isLoggedIn():
-			user_books = book_manager.getReserverdBooksByUser(user_id=user_manager.user.uid())['user_books'].split(',')
+			reserved_books = book_manager.getReserverdBooksByUser(user_id=user_manager.user.uid())
+			
+			if reserved_books is not None:
+				user_books = reserved_books['user_books'].split(',')
 		
+		print("---------------------------------------")
 		print(user_books)
 
 		if b and len(b) <1:
