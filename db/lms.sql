@@ -51,6 +51,7 @@ CREATE TABLE `books` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `desc` longtext NOT NULL,
+  `author` varchar(255) NOT NULL,
   `availability` tinyint(1) NOT NULL,
   `edition` varchar(255) NOT NULL,
   `count` int(11) NOT NULL
@@ -60,9 +61,9 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `name`, `desc`, `availability`, `edition`, `count`) VALUES
-(1, '101 Ways To Be A Software Engineer', 'By Miss Yusra Mansoor', 1, '1', 3),
-(2, 'JAVA For Absolute Beginners', 'Step into the basics of java programmming along with globally famed programmer', 0, '1', 5);
+INSERT INTO `books` (`id`, `name`, `desc`, `author`, `availability`, `edition`, `count`) VALUES
+(1, '101 Ways To Be A Software Engineer', '', 'Miss Yusra Mansoor', 1, '1', 3),
+(2, 'JAVA For Absolute Beginners', 'Step into the basics of java programmming along with globally famed programmer', '', 1, '1', 5);
 
 -- --------------------------------------------------------
 
@@ -169,3 +170,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
