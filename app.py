@@ -19,7 +19,6 @@ app.jinja_env.globals.update(
     ago=ago,
     str=str,
 )
-
 app.register_blueprint(user_view)
 app.register_blueprint(book_view)
 app.register_blueprint(admin_view)
