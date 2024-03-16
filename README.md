@@ -18,7 +18,7 @@ export FLASk_ENV=development
 ```
 
 ## Setup Datbase
-Export `lms.sql` database from within db directory
+Export `lms.sql` database from within [db](https://github.com/hamza-avvan/library-management-system/tree/master/db) directory
 
 ```bash
 mysql -u <username> -p <password> lms < lms.sql
