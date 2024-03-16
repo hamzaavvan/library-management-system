@@ -16,8 +16,8 @@ class DB(object):
 		app.config["MYSQL_DATABASE_PASSWORD"] = self.password;
 		app.config["MYSQL_DATABASE_DB"] = self.db;
 
+		self.mysql = MySQL(app, cursorclass=DictCursor)
 		# try:
-		# 	self.mysql = MySQL(app, cursorclass=DictCursor)
 		# 	run_command("mysql -h {} -u{} -p{} {} -e \"\"".format(self.host, self.user, self.password, self.db))
 		# except:
 		# 	print("Error")

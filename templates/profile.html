@@ -56,21 +56,25 @@
 										<!-- <h2 class="text-center mt-4" style="margin-bottom: 0.5em;">Your Books</h2> -->
 										<div class="text-center mb-4 mt-4"><i class="text-center mt-4 bi-book" style="
 											font-size: 6em; "></i></div>
+										<div class="row m-1">
 										{% for book in books %}
-											<div class="card book">
-												<img src="/static/images/bg.jpg" class="card-img-top" alt="{{book[1]}}">
-												<div class="card-body">
-				    								<h5 class="card-title"><a href="/books/{{book['id']}}">{{book['name']}}</a></h5>
+											<div class="card book col-md-12 p-0" style="position: relative; cursor: pointer;" onclick="window.location='/books/{{book['id']}}'">
+												<div class="d-inline-block " style="position: relative">
+													<div style="height: 100%;background-position: left;background-size: cover;background-image: url(/static/images/bg.jpg);width: 5em;" class="card-img-top" alt="{{book[1]}}"></div>
+												</div>
+												<div class="card-body p-0 pb-2 m-2 mb-0 d-inline-block" style="margin-bottom: 0 !important;margin-top: 0 !important;position: relative;top: -9px;margin-left: 8px !important;">
+				    								<h5 class="card-title m-0"><a href="/books/{{book['id']}}">{{book['name']}}</a></h5>
 													{% if book['availability'] < 1 %}
 														<span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
 													{% endif %}
 													<!-- <p class="card-text bookdesc">{{book['desc']}}</p> -->
 
-													<p class="card-text">Author: <span class="font-weight-light">{{book['author']}}</span></p>
+													<small class="card-text">Author: <span class="font-weight-light">{{book['author']}}</span></small>
 												</div>
 											</div>
 										{% endfor %}
-										{% else %}
+										</div>
+									{% else %}
 											<div class="card bwrapper">
 												<div class="card-body">
 													<h4 class="text-center mt-4">Manage Books</h4>
