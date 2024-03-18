@@ -22,8 +22,12 @@
 				<small class="form-text text-muted">Members will be able to search using title!</small>
 			</div>
 			<div class="form-group">
+				<label for="author">Author</label>
+				<input type="text" name="author" class="form-control" id="author" value="{{book['author']}}" required  placeholder="E.g. Imam Al Bukhari">
+			</div>
+			<div class="form-group">
 				<label for="qty">Quantity</label>
-				<input type="number" name="qty" class="form-control" id="qty" value="{{book['count']}}" required  placeholder="E.g 2">
+				<input type="number" name="qty" class="form-control" id="qty" value="{{book['count']}}" required  placeholder="E.g. 2">
 			</div>
 			<div class="form-group form-check">
 				<input type="checkbox" name="avaliable" value="{{book['availability']}}" {{'checked' if book['availability']==1 else''}} class="form-check-input" id="avaliable">

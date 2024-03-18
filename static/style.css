@@ -32,7 +32,13 @@ h1, h2, h3, h4 {
 }
 
 .book .card-title {
-	font-family: inherit !important;
+	/* font-family: inherit !important; */
+	font-family: sans-serif;
+    font-size: 17px;
+}
+
+.book .card-title a {
+	text-decoration: none;
 }
 
 #photo {
@@ -66,4 +72,35 @@ h1, h2, h3, h4 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
+}
+
+.slick-carousel {
+	height: 100px;
+}
+
+.slick-carousel img {
+	background: #fff;
+    color: #fff;
+    font-size: 36px;
+	height: 100px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 10px;
+	margin-left: 2px;
+    position: relative;
+    text-align: center;
+}
+
+.slick-prev:before, .slick-next:before {
+	color: #0069d9 !important;
+}
+
+.book {
+	--mdb-image-hover-transition: all 0.3s ease-in-out;
+    transition: var(--mdb-image-hover-transition);
+}
+
+.book:hover {
+    opacity: 0.9;
+	box-shadow: 0px 0px 7px -5px #534d4d;
 }

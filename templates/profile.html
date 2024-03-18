@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="profile-pic-div m-auto">
-                                    <img src="/static/images/avatar.jpg" id="photo">
+                                    <img src="https://api.dicebear.com/8.x/adventurer-neutral/png?size=100&seed={{user['name']}}&scale=110&radius=50&backgroundColor=763900,9e5622,ecad80,f2d3b1,d1d4f9,c0aede,b6e3f4,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear" id="photo">
                                     <!-- <input type="file" id="file">
                                     <label for="file" id="uploadBtn" style="display: none;">Choose Photo</label> -->
 									<div class="text-center mt-4">{{user['name']}}</div>
@@ -69,8 +69,10 @@
 													{% endif %}
 													<!-- <p class="card-text bookdesc">{{book['desc']}}</p> -->
 
-													<small class="card-text">Author: <span class="font-weight-light">{{book['author']}}</span></small>
+													<small class="card-text">Author: <span class="font-weight-light">{{book['author'] if book['author'] != "" else "Anonymous"}}</span></small>
+
 												</div>
+												<a href="#"><i class="bi bi-box-arrow-up-right float-right m-3"></i></a>
 											</div>
 										{% endfor %}
 										</div>

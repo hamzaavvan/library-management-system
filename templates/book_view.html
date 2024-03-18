@@ -3,6 +3,10 @@
 {% block title %}Book - {{books['name']}} {% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" type="text/css" href="/static/plugins/slick-carousel/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/static/plugins/slick-carousel/slick-theme.css"/>
+
 <div class="container">
     <div style="width:100%; margin-top: 3em;margin-bottom: 2em;">
         {% if msg %}
@@ -27,20 +31,16 @@
                         <div class="card-body">
                             <div class="row">
                             <div class="col-md-5">
-                                <img src="/static/images/bg.jpg" style="height: 250px; width: auto; 
-                                margin: 0 auto;
-                                display: block;" class="card-img-top" alt="{{books[1]}}">
-                                <a href="/books/add/{{books['id']}}" class="btn btn-outline-warning ml-3 mt-3  {{ 'disabled' if str(books['id']) in user_books else '' }}"><i class="bi bi-journal-plus"></i> {{ 'Added' if str(books['id']) in user_books else 'Add' }}</a>
+                                <img src="/static/images/books/cover.jpg" style="height: 250px; width: 397px; margin: 0 auto; display: block;" class="card-img-top" alt="{{books[1]}}">
 
-                                <div class="platforms mt-3 ml-3">
-                                    <h4 class="font-weight-light" style="margin-bottom: 0;">Avaliable On:</h4>
-                                    <div style="font-size: 2.1em;">
-                                        <i class="bi bi-xbox" style="color: green;"></i>
-                                        <i class="bi bi-youtube ml-2" style="color: red;"></i>
-                                        <i class="bi bi-windows ml-2" style="color: rgb(39, 144, 185);"></i>
-                                        <i class="bi bi-github ml-2" style=""></i>
-                                    </div>
+                                
+                                <div class="slick-carousel" style="width: 360px; margin: 0 auto; display: block;">
+                                    <div><img src="/static/images/books/cover.jpg"></div>
+                                    <div><img src="/static/images/books/cover.jpg"></div>
+                                    <div><img src="/static/images/books/cover.jpg"></div>
+                                    <div><img src="/static/images/books/cover.jpg"></div>
                                 </div>
+
                             </div>
                             <div class="col-md-6">
                                 <h2>{{books['name']}}</h2>
@@ -48,17 +48,26 @@
                                 <span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
                                 {% endif %}
                                 <p class="card-text">{{books['desc']}}</p>
-                                <p class="card-text font-weight-light"><b>Author:</b> {{books['author']}}</p>
+                                <p class="card-text font-weight-light"><b>Author:</b> {{books['author'] if books['author'] != "" else "Anonymous"}}</p>
             
+                                {% if books['count'] < 1 %}
                                 <p class="card-text">
-                                <span class="badge badge-{{ 'primary' if books['count'] > 0 else 'secondary' }}" style="margin-bottom: 5px;">
-                                    {% if books['count'] > 0%}
-                                        Books Left: {{books['count']}}
-                                    {% else %}
-                                        All gone
-                                    {% endif %}
-                                </span>
+                                        <span class="badge badge-secondary" style="margin-bottom: 5px;">All reserved</span>
                                 </p>
+                                {% endif %}
+
+                                <a href="/books/add/{{books['id']}}" class="btn btn-outline-warning mt-1  {{ 'disabled' if str(books['id']) in user_books else '' }}"><i class="bi bi-journal-plus"></i> {{ 'Added' if str(books['id']) in user_books else 'Add' }}</a>
+
+                                
+                                <div class="platforms mt-3">
+                                    <h4 class="font-weight-light" style="margin-bottom: 0;">Avaliable On</h4>
+                                    <div style="font-size: 2.1em;">
+                                        <i class="bi bi-xbox" style="color: green;"></i>
+                                        <i class="bi bi-youtube ml-2" style="color: red;"></i>
+                                        <i class="bi bi-windows ml-2" style="color: rgb(39, 144, 185);"></i>
+                                        <i class="bi bi-github ml-2" style=""></i>
+                                    </div>
+                                </div>
                             </div>
                             </div>
                         </div>
@@ -77,4 +86,19 @@
             </div>
         {% endif %}	
 </div>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/plugins/slick-carousel/slick.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.slick-carousel').slick({
+  infinite: false,
+  slidesToShow: 3,
+  initialSlide: 1,
+  arrows: true,
+});
+  });
+</script>
+
 {% endblock %}
