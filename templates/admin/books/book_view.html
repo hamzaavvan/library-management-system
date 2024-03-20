@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <div class="row">
                             <div class="col-md-5">
-                                <img src="/static/images/bg.jpg" style="height: 250px; width: auto; 
+                                <img src="/static/images/bg.jpg" style="height: 250px; width: 397px; 
                                 margin: 0 auto;
                                 display: block;" class="card-img-top" alt="{{books[1]}}">
 								<a href="edit/{{books['id']}}" class="btn ml-3 mt-3 btn-outline-primary"><i class="bi bi-pen-fill"></i> Edit</a>
@@ -49,7 +49,7 @@
                                 <span class="badge badge-warning" style="margin-bottom: 5px;">Assigned</span>
                                 {% endif %}
                                 <p class="card-text">{{books['desc']}}</p>
-                                <p class="card-text font-weight-light"><b>Author:</b> {{books['author']}}</p>
+                                <p class="card-text font-weight-light"><b>Author:</b> {{books['author'] if books['author'] != "" else "Anonymous"}}</p>
             
                                 <p class="card-text">
                                 <span class="badge badge-{{ 'primary' if books['count'] > 0 else 'secondary' }}" style="margin-bottom: 5px;">
@@ -66,8 +66,8 @@
 									<h4 class="font-weight-light">Book Owner(s)</h4>
 									<div class="row">
 									{% for user in books_owners %}
-										<div class="owner col-md-3" style="padding-left: 0;">
-											<img style="height: auto !important; display: block;" class="mr-auto ml-auto" src="/static/images/avatar.jpg">
+										<div class="owner col-md-3" style="padding-left: 0; padding-right: 0;">
+                                            <img src="https://api.dicebear.com/8.x/adventurer-neutral/png?size=72&seed={{user['name']}}&scale=110&radius=50&backgroundColor=763900,9e5622,ecad80,f2d3b1,d1d4f9,c0aede,b6e3f4,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear" id="photo" style="height: auto !important; display: block;" class="mr-auto ml-auto">
 											<p class="text-center">{{user['name']}}</p>
 										</div>
 									{% endfor %}

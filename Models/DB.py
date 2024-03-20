@@ -1,6 +1,6 @@
 from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
-
+from Misc.functions import *
 
 class DB(object):
 	"""Initialize mysql database """
@@ -17,6 +17,10 @@ class DB(object):
 		app.config["MYSQL_DATABASE_DB"] = self.db;
 
 		self.mysql = MySQL(app, cursorclass=DictCursor)
+		# try:
+		# 	run_command("mysql -h {} -u{} -p{} {} -e \"\"".format(self.host, self.user, self.password, self.db))
+		# except:
+		# 	print("Error")
 
 	def cur(self):
 		return self.mysql.get_db().cursor()

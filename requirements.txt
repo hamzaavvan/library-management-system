@@ -1,3 +1,3 @@
-flask==2.3.2
+flask
 flask-mysql==1.5.2
 timeago==1.0.15

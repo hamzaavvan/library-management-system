@@ -14,6 +14,9 @@
 			{% if msg %}
 				<div class="alert alert-success">{{msg}}</div>
 			{% endif %}
+			{% if error %}
+				<div class="alert alert-danger">{{error}}</div>
+			{% endif %}
 			<form action="/books/search" method="GET">
 			  <div class="form-group">
 			    <div style="width: 100%">
@@ -28,12 +31,17 @@
 
 		<div style="width:100%; margin-top: 3em;">
 			{% if books %}
-				{% if search %}
-				<h4>Search Found ({{count}})</h4>
+				{% if view=='mybooks' %}
+				<h4 class="mb-3">My Books ({{count}})</h4>
 				{% endif %}
+
+				{% if search %}
+				<h4 class="mb-3">Search found ({{count}})</h4>
+				{% endif %}
+				
 				{% for book in books %}
-				<div class="card book">
-				  <img src="/static/images/bg.jpg" class="card-img-top" alt="{{book[1]}}">
+				<div class="card book hover-overlay">
+				  <img src="/static/images/bg.jpg" style="cursor: pointer;" onclick="window.location='/books/{{book['id']}}'" class="card-img-top" alt="{{book[1]}}">
 				  <div class="card-body">
 				    <h5 class="card-title"><a href="/books/{{book['id']}}">{{book['name']}}</a></h5>
 				    {% if book['availability'] < 1 %}
@@ -42,13 +50,9 @@
 				    <p class="card-text bookdesc">{{book['desc']}}</p>
 
 				    <p class="card-text">
-				    <span class="badge badge-{{ 'primary' if book['count'] > 0 else 'secondary' }}" style="margin-bottom: 5px;">
-				    	{% if book['count'] > 0%}
-				    	  Books Left: {{book['count']}}
-				    	{% else %}
-				    	  All gone
+				    	{% if book['count'] < 1 %}
+							<span class="badge badge-secondary" style="margin-bottom: 5px;">All reserved</span>
 				    	{% endif %}
-				    </span>
 					</p>
 
 				    {% if book['count'] > 0 %}
@@ -59,7 +63,7 @@
 				{% endfor %}
 			{% else %}
 				<h4>No Books Found!</h4>
-				<p>Please contact the librarian</p>
+				<p>Please contact the librarian...</p>
 			{% endif %}
 		</div>
 	</div>
