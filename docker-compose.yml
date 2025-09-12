@@ -5,7 +5,7 @@ services:
     build: .
     container_name: library-management-system
     ports:
-      5000:5000
+      - 5000:5000
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
